@@ -1,0 +1,56 @@
+1	Cathy	Cathy	N	N	eigen|ev|neut	2	su	_	_
+2	zag	zie	V	V	trans|ovt|1of2of3|ev	0	ROOT	_	_
+3	hen	hen	Pron	Pron	per|3|mv|datofacc	2	obj1	_	_
+4	wild	wild	Adj	Adj	attr|stell|onverv	5	mod	_	_
+5	zwaaien	zwaai	N	N	soort|mv|neut	2	vc	_	_
+6	.	.	Punc	Punc	punt	5	punct	_	_
+
+1	Ze	ze	Pron	Pron	per|3|evofmv|nom	2	su	_	_
+2	had	heb	V	V	trans|ovt|1of2of3|ev	0	ROOT	_	_
+3	met	met	Prep	Prep	voor	8	mod	_	_
+4	haar	haar	Pron	Pron	bez|3|ev|neut|attr	5	det	_	_
+5	moeder	moeder	N	N	soort|ev|neut	3	obj1	_	_
+6	kunnen	kan	V	V	hulp|ott|1of2of3|mv	2	vc	_	_
+7	gaan	ga	V	V	hulp|inf	6	vc	_	_
+8	winkelen	winkel	V	V	intrans|inf	11	cnj	_	_
+9	,	,	Punc	Punc	komma	8	punct	_	_
+10	zwemmen	zwem	V	V	intrans|inf	11	cnj	_	_
+11	of	of	Conj	Conj	neven	7	vc	_	_
+12	terrassen	terras	N	N	soort|mv|neut	11	cnj	_	_
+13	.	.	Punc	Punc	punt	12	punct	_	_
+
+1	Dat	dat	Pron	Pron	aanw|neut|attr	2	det	_	_
+2	werkwoord	werkwoord	N	N	soort|ev|neut	6	obj1	_	_
+3	had	heb	V	V	hulp|ovt|1of2of3|ev	0	ROOT	_	_
+4	ze	ze	Pron	Pron	per|3|evofmv|nom	6	su	_	_
+5	zelf	zelf	Pron	Pron	aanw|neut|attr|wzelf	3	predm	_	_
+6	uitgevonden	vind	V	V	trans|verldw|onverv	3	vc	_	_
+7	.	.	Punc	Punc	punt	6	punct	_	_
+
+1	Het	het	Pron	Pron	onbep|neut|zelfst	2	su	_	_
+2	hoorde	hoor	V	V	trans|ovt|1of2of3|ev	0	ROOT	_	_
+3	bij	bij	Prep	Prep	voor	2	ld	_	_
+4	de	de	Art	Art	bep|zijdofmv|neut	6	det	_	_
+5	warme	warm	Adj	Adj	attr|stell|vervneut	6	mod	_	_
+6	zomerdag	zomerdag	N	N	soort|ev|neut	3	obj1	_	_
+7	die	die	Pron	Pron	betr|neut|zelfst	6	mod	_	_
+8	ze	ze	Pron	Pron	per|3|evofmv|nom	12	su	_	_
+9	ginds	ginds	Adv	Adv	gew|aanw	12	mod	_	_
+10	achter	achter	Adv	Adv	gew|geenfunc|stell|onverv	12	svp	_	_
+11	had	heb	V	V	hulp|ovt|1of2of3|ev	7	body	_	_
+12	gelaten	laat	V	V	trans|verldw|onverv	11	vc	_	_
+13	.	.	Punc	Punc	punt	12	punct	_	_
+
+1	Ze	ze	Pron	Pron	per|3|evofmv|nom	2	su	_	_
+2	hadden	heb	V	V	trans|ovt|1of2of3|mv	0	ROOT	_	_
+3	languit	languit	Adv	Adv	gew|geenfunc|stell|onverv	11	mod	_	_
+4	naast	naast	Prep	Prep	voor	11	mod	_	_
+5	elkaar	elkaar	Pron	Pron	rec|neut	4	obj1	_	_
+6	op	op	Prep	Prep	voor	11	ld	_	_
+7	de	de	Art	Art	bep|zijdofmv|neut	8	det	_	_
+8	strandstoelen	strandstoel	N	N	soort|mv|neut	6	obj1	_	_
+9	kunnen	kan	V	V	hulp|inf	2	vc	_	_
+10	gaan	ga	V	V	hulp|inf	9	vc	_	_
+11	liggen	lig	V	V	intrans|inf	10	vc	_	_
+12	.	.	Punc	Punc	punt	11	punct	_	_
+
