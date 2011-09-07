@@ -26,4 +26,7 @@ Installation:
 
 
 Usage:
-python find
+Run python findSimilarData.py to get a list of all options.
+
+Sample use:
+ python findSimilarData.py example/1.conll example/
