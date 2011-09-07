@@ -5,8 +5,6 @@ Python toolkit that implements various measures described in [1]
 [1] Barbara Plank and Gertjan van Noord. Effective Measures of Domain
 Similarity for Parsing. In Proceedings of ACL, 2011.
 
-(c) Barbara Plank, August 2011
-
 =====================================================================
 
 
@@ -35,3 +33,7 @@ If sentences are the base units (rather than articles) and
 data is incrementally selected up to --max and with 2*previous stepsize:
 
 python findSimilarData.py target/target_devel.evalita2011 src_and_targetcorpus_maltparsed/ --use-sentences --max=15000 --step-size=500
+
+
+
+(c) Barbara Plank, August 2011
