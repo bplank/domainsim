@@ -63,6 +63,8 @@ class Corpora:
                         newRelFreq[word] = corpus._relfreq[word]
                         newVocab[word] = corpus.vocab[word]
                 corpus.updateVocab(newVocab,newRelFreq)
+
+        sys.setrecursionlimit(self.getNumFiles())
                 
 
     def loadFiles(self, directory,target=None):
