@@ -30,3 +30,8 @@ Run python findSimilarData.py to get a list of all options.
 
 Sample use:
  python findSimilarData.py example/1.conll example/
+
+If sentences are the base units (rather than articles) and 
+data is incrementally selected up to --max and with 2*previous stepsize:
+
+python findSimilarData.py target/target_devel.evalita2011 src_and_targetcorpus_maltparsed/ --use-sentences --max=15000 --step-size=500
