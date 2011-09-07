@@ -1,0 +1,29 @@
+Measures of Domain Similarity
+
+Python toolkit that implements various measures described in [1]
+
+[1] Barbara Plank and Gertjan van Noord. Effective Measures of Domain
+Similarity for Parsing. In Proceedings of ACL, 2011.
+
+(c) Barbara Plank, August 2011
+
+=====================================================================
+
+
+Requirements:
+* python3
+* numpy python package
+* myconllutils: available from https://github.com/bplank/myconllutils
+
+Installation:
+1. Download myconllutils:
+   git clone git@github.com:bplank/myconllutils.git
+2. Add the directory that contains myconllutils to your PYTHONPATH
+3. Download domainsim:
+   git clone git@github.com:bplank/domainsim.git
+3. Create an environment variable MEASURES_HOME that points to the 
+   directory that contains domainsim
+
+
+Usage:
+python find
