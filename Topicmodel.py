@@ -83,7 +83,7 @@ class Topicmodel:
 
 
     def estimate(self,targetCorpus,directory,fileNames):
-        """ estimate Mallet topicmodel """
+        """ estimate Mallet topic model - article level """
         print('# (experimental code: use --mallet-topicmodel) ')
         d = tempfile.mkdtemp(prefix='tmp')
         # create temporary directory with files
@@ -99,6 +99,10 @@ class Topicmodel:
             subprocess.call("cat "+ filein + " | awk '{if (NF>0) printf \"%s \",$2; else print}' > " + fileout,shell=True)
         shutil.rmtree(d)
         cdir = subprocess.call("pwd",shell=True)
+        self.__callMallet(directory,d_sents)
+
+    def __callMallet(self,directory,d_sents):
+        
         myhome = os.environ.get("MEASURES_HOME")
         if directory.endswith("/"):
             directory = directory[:-1]
@@ -107,6 +111,21 @@ class Topicmodel:
         print("# mallet file saved in: ",directory+".mallet.doc-topics.gz")
         shutil.rmtree(d_sents)
         self.setFromFile(directory+".mallet.doc-topics.gz")
+
+    def estimateFromSents(self,targetCorpus,corpora):
+        """ estimate Mallet topic model - every sentence is a doc """
+        d = tempfile.mkdtemp(prefix='tmp')
+        print("# Temp dir: ",d)
+        for corpusName in corpora:
+            corpus = corpora[corpusName]
+            FILE = open(d+"/"+corpusName,"w")
+            for instance in corpus.getInstances():
+                sent = " ".join(instance.getSentence()) + "\n"
+                FILE.write(sent)
+            FILE.close()
+        shutil.copy(targetCorpus.getPath(),d)
+        self.__callMallet("topicmodel",d)
+        
 
 
 def main():

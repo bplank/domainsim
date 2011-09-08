@@ -158,7 +158,7 @@ def main():
 
         keys = list(c._corpora.keys())
         key=keys[-1]
-        print("# c:", c._corpora[key].vocab)
+        #print("# c:", c._corpora[key].vocab)
 
 
         if useCharNgrams == True:

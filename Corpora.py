@@ -63,8 +63,10 @@ class Corpora:
                         newRelFreq[word] = corpus._relfreq[word]
                         newVocab[word] = corpus.vocab[word]
                 corpus.updateVocab(newVocab,newRelFreq)
-
-        sys.setrecursionlimit(self.getNumFiles())
+        if self.getNumFiles() < 1500:
+            sys.setrecursionlimit(1500)
+        else:
+            sys.setrecursionlimit(self.getNumFiles())
                 
 
     def loadFiles(self, directory,target=None):
@@ -97,16 +99,17 @@ class Corpora:
             self._directory = pool
           
             if options and options.use_topicmodel:
-                print("# loading topicmodel from: ",options.path_topicmodel)
                 topicmodel = Topicmodel()
                 if options.path_topicmodel:
+                    print("# loading topicmodel from: ",options.path_topicmodel)
                     topicmodel.setFromFile(options.path_topicmodel)
                 else:
-                    print("# --> estimate:")
+                    print("# --> estimate topicmodel from files:")
                     topicmodel.estimate(target,self._directory,self._files)
                 for d in topicmodel.documents:
                     f = d.filename
                     if target and f == target.getFileName():
+                        target.updateVocab(d.getTopicDistribution(),d.getTopicDistribution())
                         continue
                     self._files.append(d.filename)
                     corpus = Corpus(pool+Corpus._path_delimiter+d.filename,format=format,options=options,tm=topicmodel)
@@ -120,9 +123,6 @@ class Corpora:
 
         elif os.path.isdir(pool) and not self.articles_as_unit:
             print("# --> use sentences as unit")
-            if options and options.use_topicmodel:
-                print("Sorry, topicmodel not yet implemented for sentences!")
-                sys.exit(-1)
             tmpFiles = self.loadFiles(pool,target=target)
             self._directory = pool
             for myFile in tmpFiles:
@@ -138,15 +138,25 @@ class Corpora:
                     self._files.append(filename)
                     corpora[corpus.getFileName()] = corpus
                     count+=1
+            if options and options.use_topicmodel:
+                print("# Using topicmodel for sentences!")
+                topicmodel = Topicmodel()
+                topicmodel.estimateFromSents(target,corpora)
+                for d in topicmodel.documents:
+                    f = d.filename
+                    if target and f == target.getFileName():
+                        target.updateVocab(d.getTopicDistribution(),d.getTopicDistribution())
+                        continue  
+                    corpus = corpora[f]
+                    corpus.updateVocab(d.getTopicDistribution(),d.getTopicDistribution())
+                    corpora[corpus.getFileName()] = corpus
+                
         else:
             self.articles_as_unit=False
             if target and pool == target.getPath():
                 print("Target and FILE are the same!")
                 sys.exit(-1)
-            print("# single file!")
-            if options and options.use_topicmodel:
-                print("Sorry, topicmodel not yet implemented for sentences!")
-                sys.exit(-1)
+            print("# single file - use sentences!")
             reader = Conll07Reader(pool)
             prefix,separator,nameFile = pool.rpartition(Corpus._path_delimiter)
             self._directory=prefix
@@ -160,6 +170,19 @@ class Corpora:
                 corpora[corpus.getFileName()] = corpus
                 count+=1
 
+            if options and options.use_topicmodel:
+                print("# Using topicmodel for sentences!")
+                topicmodel = Topicmodel()
+                topicmodel.estimateFromSents(target,corpora)
+                # update vocab
+                for d in topicmodel.documents:
+                    f = d.filename
+                    if target and f == target.getFileName():
+                        target.updateVocab(d.getTopicDistribution(),d.getTopicDistribution())
+                        continue
+                    corpus = corpora[f]
+                    corpus.updateVocab(d.getTopicDistribution(),d.getTopicDistribution())
+                    corpora[corpus.getFileName()] = corpus
         return corpora
 
     
@@ -252,7 +275,7 @@ class Corpora:
         else:
             similarity=Corpus._sim_jensen_shannon
 
-    
+        
         # store elements as tuples in list: [(filename, score), ...,(filename,score)]
         listOfTuples = []
         for key_corpus in self._corpora:
