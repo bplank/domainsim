@@ -30,6 +30,7 @@ class Topicmodel:
     """ a topic model estimated with mallet """
     def __init__(self):
         self.documents = []
+        self.tmpDir="/dev/shm"
 
     def setFromFile(self,filename):
         self.filename = filename
@@ -85,13 +86,13 @@ class Topicmodel:
     def estimate(self,targetCorpus,directory,fileNames):
         """ estimate Mallet topic model - article level """
         print('# (experimental code: use --mallet-topicmodel) ')
-        d = tempfile.mkdtemp(prefix='tmp')
+        d = tempfile.mkdtemp(prefix='tmp',dir=self.tmpDir)
         # create temporary directory with files
         shutil.copy(targetCorpus.getPath(),d)
         for fileName in fileNames:
             path = directory + "/" + fileName
             shutil.copy(path,d)
-        d_sents = tempfile.mkdtemp(prefix='tmp')
+        d_sents = tempfile.mkdtemp(prefix='tmp',dir=self.tmpDir)
         print("# tmp file: ",d_sents)
         for f in os.listdir(d):
             filein = d + "/" + f
@@ -114,7 +115,7 @@ class Topicmodel:
 
     def estimateFromSents(self,targetCorpus,corpora):
         """ estimate Mallet topic model - every sentence is a doc """
-        d = tempfile.mkdtemp(prefix='tmp')
+        d = tempfile.mkdtemp(prefix='tmp',dir=self.tmpDir)
         print("# Temp dir: ",d)
         for corpusName in corpora:
             corpus = corpora[corpusName]
