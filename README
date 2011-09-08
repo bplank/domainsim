@@ -21,6 +21,8 @@ Installation:
    git clone git@github.com:bplank/domainsim.git
 3. Create an environment variable MEASURES_HOME that points to the 
    directory that contains domainsim
+4. Extract mallet-2.0.6.tar.gz in the domainsim directory (the executable
+   should be in domainsim/mallet-2.0.6/bin/mallet
 
 
 Usage: findSimilarData.py [options] TESTFILE DIRECTORY/FILE
