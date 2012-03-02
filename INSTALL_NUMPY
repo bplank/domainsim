@@ -1,0 +1,11 @@
+# Python 3, Compiler und Abhängigkeiten installieren
+sudo apt-get install gcc gfortran python3.1 python3.1-dev libatlas-base-dev
+
+# NumPy herunterladen und entpacken
+wget http://sourceforge.net/projects/numpy/files/NumPy/1.6.1/numpy-1.6.1.tar.gz
+tar -zxvf numpy-1.6.1.tar.gz
+
+# ins NumPy Verzeichnis wechseln und dort installieren
+cd numpy-1.6.1/
+python3.1 setup.py build --fcompiler=gnu95
+sudo python3.1 setup.py install
