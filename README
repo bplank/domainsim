@@ -33,13 +33,13 @@ DIRECTORY/FILE: Directory with CoNLL files OR single FILE
 Run python3 findSimilarData.py to get a list of all options.
 
 Example:
- python3 findSimilarData.py example/1.conll example/
+ python3 findSimilarData.py --use-tpicmodel target.conll example/
 
 Example: when sentences are the base units (rather than articles) and 
 data is incrementally selected up to --max and with 2*previous stepsize:
 
-python findSimilarData.py TARGET POOL --use-sentences --max=15000 --step-size=500
+python3 findSimilarData.py --use-topicmodel TARGET POOL --use-sentences --max=15000 --step-size=500
 
-
+By default, the --use-topicmodel excludes punctuation given in punct.txt (but not stopwords).
 
 (c) Barbara Plank, August 2011

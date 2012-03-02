@@ -107,7 +107,7 @@ class Topicmodel:
         myhome = os.environ.get("MEASURES_HOME")
         if directory.endswith("/"):
             directory = directory[:-1]
-        subprocess.call(myhome+"/mallet-2.0.6/bin/mallet import-dir --input "+d_sents+" --output "+directory+".mallet --keep-sequence",shell=True)
+        subprocess.call(myhome+"/mallet-2.0.6/bin/mallet import-dir --stoplist-file punct.txt --input "+d_sents+" --output "+directory+".mallet --keep-sequence",shell=True)
         subprocess.call(myhome+"/mallet-2.0.6/bin/mallet train-topics --input "+directory+".mallet --num-topics 100 --output-state "+directory+".mallet.state.gz --output-doc-topics "+directory+".mallet.doc-topics.gz --output-topic-keys "+directory+".mallet.topic-keys.gz",shell=True)
         print("# mallet file saved in: ",directory+".mallet.doc-topics.gz")
         shutil.rmtree(d_sents)
