@@ -14,7 +14,7 @@ from Corpus import MyError
 from random import randint
 from operator import itemgetter
 from Topicmodel import Topicmodel
-from myconllutils.conll.Conll07Reader import Conll07Reader
+from conll.Conll07Reader import Conll07Reader
 
 class Corpora:
     """ A collection of Corpus objects

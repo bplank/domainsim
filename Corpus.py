@@ -4,7 +4,7 @@ import sys
 from numpy import zeros, dot
 from numpy.linalg import norm
 from math import log, fabs, sqrt
-from myconllutils.conll.Conll07Reader import Conll07Reader
+from conll.Conll07Reader import Conll07Reader
 
 class MyError(Exception):
     def __init__(self, value):
