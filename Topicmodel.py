@@ -74,8 +74,8 @@ class Topicmodel:
                         topic = item
                     else:
                         proportion = float(item)
-                        if proportion != 0.0: #only add if value diff from 0.0 === no add all
-                            topicDistr[topic] = proportion
+                        #if proportion != 0.0: #only add if value diff from 0.0 === no add all
+                        #    topicDistr[topic] = proportion
                     i+=1
                 document = Document(source, topicDistr)
                 self.addDocument(document)
@@ -107,7 +107,8 @@ class Topicmodel:
         myhome = os.environ.get("MEASURES_HOME")
         if directory.endswith("/"):
             directory = directory[:-1]
-        subprocess.call(myhome+"/mallet-2.0.6/bin/mallet import-dir --stoplist-file punct.txt --input "+d_sents+" --output "+directory+".mallet --keep-sequence",shell=True)
+        subprocess.call(myhome+"/mallet-2.0.6/bin/mallet import-dir --remove-stopwords --extra-stopwords "+myhome+"/punct.txt --input "+d_sents+" --output "+directory+".mallet --keep-sequence",shell=True)
+        #subprocess.call(myhome+"/mallet-2.0.6/bin/mallet import-dir --input "+d_sents+" --output "+directory+".mallet --keep-sequence",shell=True)
         subprocess.call(myhome+"/mallet-2.0.6/bin/mallet train-topics --input "+directory+".mallet --num-topics 100 --output-state "+directory+".mallet.state.gz --output-doc-topics "+directory+".mallet.doc-topics.gz --output-topic-keys "+directory+".mallet.topic-keys.gz",shell=True)
         print("# mallet file saved in: ",directory+".mallet.doc-topics.gz")
         shutil.rmtree(d_sents)
@@ -130,25 +131,28 @@ class Topicmodel:
 
 
 def main():
-    test="/net/aistaff/bplank/data/bplank/english/topicmodels/wsj-w.doc-topics.gz"
-    t = Topicmodel(test)
+    test="topicmodel.mallet.doc-topics.gz"
+    t = Topicmodel()
+    t.setFromFile(test)
     print(t.getNumTopics())
-#    d = t.documents[0] #get first document
-#    d.printDistr()
-#    print(d.filename)
-#    d2 = t.documents[1]
-#    d2.printDistr()
-#    print(d2.filename)
+    d = t.documents[0] #get first document
+    print(d.filename)
+    d.printDistr()
 
-    d3 = t.getDocument("wsj_2300")
-    d4 = t.getDocument("wsj_2168") # js: 0.137698
-    d5 = t.getDocument("wsj_1208") # js: 0.182491
+    d2 = t.documents[1]
+    print(d2.filename)
+    d2.printDistr()
+
+
+    #d3 = t.getDocument("wsj_2300")
+    #d4 = t.getDocument("wsj_2168") # js: 0.137698
+    #d5 = t.getDocument("wsj_1208") # js: 0.182491
     #d3.printDistr()
-    print(d3.filename)
-    d3.printDistr()
-    print(d4.filename)
-    d4.printDistr()
-    print(d5.filename)
-    d5.printDistr()
-    subprocess.call("mallet")
+    #print(d3.filename)
+    #d3.printDistr()
+    #print(d4.filename)
+    #d4.printDistr()
+    #print(d5.filename)
+    #d5.printDistr()
+    #subprocess.call("mallet")
 #main()
